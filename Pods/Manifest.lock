@@ -1,0 +1,16 @@
+PODS:
+  - KVKCalendar (0.2.7)
+
+DEPENDENCIES:
+  - KVKCalendar
+
+SPEC REPOS:
+  trunk:
+    - KVKCalendar
+
+SPEC CHECKSUMS:
+  KVKCalendar: 9e9bd8e93eae15face4af2b571bcb222cb9ae521
+
+PODFILE CHECKSUM: 25166f6072d1fac0f1848a1a64ca1d31fa2c6256
+
+COCOAPODS: 1.9.1
