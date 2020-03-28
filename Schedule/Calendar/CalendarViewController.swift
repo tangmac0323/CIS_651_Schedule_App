@@ -232,6 +232,8 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     
-    // add tap gesture to each cell of the collection view
-    
+    // ******************************************************
+    //  TODO:
+    //  add tap gesture to each cell of the collection view
+    // ******************************************************
 }

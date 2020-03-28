@@ -151,7 +151,6 @@
 				CC36145A24204FF500A311BC /* AppDelegate.swift */,
 				CC36145C24204FF500A311BC /* SceneDelegate.swift */,
 				CC36146024204FF500A311BC /* Main.storyboard */,
-				CC6043F0242092CD0024156B /* addAssignmentViewController.swift */,
 				CC36146324204FFB00A311BC /* Assets.xcassets */,
 				CC36146524204FFB00A311BC /* LaunchScreen.storyboard */,
 				CC36146824204FFB00A311BC /* Info.plist */,
@@ -174,6 +173,7 @@
 			children = (
 				CC6043ED24208A140024156B /* AssignmentTableViewCell.swift */,
 				CC6043EB242089E20024156B /* AssignmentViewController.swift */,
+				CC6043F0242092CD0024156B /* addAssignmentViewController.swift */,
 			);
 			path = Assignment;
 			sourceTree = "<group>";
