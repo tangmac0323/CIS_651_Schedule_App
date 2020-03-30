@@ -70,6 +70,8 @@ final class ScrollHeaderDayCell: UICollectionViewCell {
                     dateLabel.backgroundColor = headerStyle.colorBackgroundSelectDate
                     dateLabel.layer.cornerRadius = dateLabel.frame.width / 2
                     dateLabel.clipsToBounds = true
+                    
+                    //print("\(selectDate.day)")
                 }
                 return
             }

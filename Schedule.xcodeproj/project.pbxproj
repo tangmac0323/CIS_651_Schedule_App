@@ -15,6 +15,7 @@
 		6475710F242E832E0064892C /* WeeklyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6475710E242E832E0064892C /* WeeklyViewController.swift */; };
 		64757111242FAFF40064892C /* WeeklyEventViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64757110242FAFF40064892C /* WeeklyEventViewer.swift */; };
 		64757113242FB08A0064892C /* events.json in Resources */ = {isa = PBXBuildFile; fileRef = 64757112242FB08A0064892C /* events.json */; };
+		64757116243191F60064892C /* AddCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64757115243191F60064892C /* AddCourseViewController.swift */; };
 		CC36145B24204FF500A311BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC36145A24204FF500A311BC /* AppDelegate.swift */; };
 		CC36145D24204FF500A311BC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC36145C24204FF500A311BC /* SceneDelegate.swift */; };
 		CC36146224204FF500A311BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC36146024204FF500A311BC /* Main.storyboard */; };
@@ -38,6 +39,7 @@
 		6475710E242E832E0064892C /* WeeklyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyViewController.swift; sourceTree = "<group>"; };
 		64757110242FAFF40064892C /* WeeklyEventViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyEventViewer.swift; sourceTree = "<group>"; };
 		64757112242FB08A0064892C /* events.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = events.json; sourceTree = "<group>"; };
+		64757115243191F60064892C /* AddCourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseViewController.swift; sourceTree = "<group>"; };
 		8688B358A49BD3D29C0A9D27 /* Pods_Schedule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Schedule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE307C82376F018D03CA4949 /* Pods-Schedule.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Schedule.release.xcconfig"; path = "Target Support Files/Pods-Schedule/Pods-Schedule.release.xcconfig"; sourceTree = "<group>"; };
 		CC36145724204FF500A311BC /* Schedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Schedule.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,6 +123,14 @@
 			path = Weekly;
 			sourceTree = "<group>";
 		};
+		64757114243191C90064892C /* AddCourse */ = {
+			isa = PBXGroup;
+			children = (
+				64757115243191F60064892C /* AddCourseViewController.swift */,
+			);
+			path = AddCourse;
+			sourceTree = "<group>";
+		};
 		CC36144E24204FF500A311BC = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +152,7 @@
 		CC36145924204FF500A311BC /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
+				64757114243191C90064892C /* AddCourse */,
 				641A43252424015C00BEFE35 /* Weekly */,
 				641A43242422B29300BEFE35 /* Calendar */,
 				641A4320242158A300BEFE35 /* Database */,
@@ -295,6 +306,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				641A4329242560ED00BEFE35 /* CalendarCollectionViewCell.swift in Sources */,
+				64757116243191F60064892C /* AddCourseViewController.swift in Sources */,
 				641A4323242158CC00BEFE35 /* SU_Course_Catagory.xcdatamodeld in Sources */,
 				CC36145B24204FF500A311BC /* AppDelegate.swift in Sources */,
 				CC36145D24204FF500A311BC /* SceneDelegate.swift in Sources */,

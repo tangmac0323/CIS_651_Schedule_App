@@ -10,12 +10,15 @@ import UIKit
 import KVKCalendar
 
 final class WeeklyViewController: UIViewController {
+    
+    private var passInDateStr = "03.30.2020"
+    
     private var events = [Event]()
     
-    private var selectDate: Date = {
+    var selectDate: Date = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd.MM.yyyy"
-        return formatter.date(from: "14.12.2018") ?? Date()
+        formatter.dateFormat = "MM.dd.yyyy"
+        return formatter.date(from: "03.30.2020") ?? Date()
     }()
     
     private lazy var todayButton: UIBarButtonItem = {
@@ -47,6 +50,7 @@ final class WeeklyViewController: UIViewController {
     }()
     
     private lazy var calendarView: CalendarView = {
+        
         let calendar = CalendarView(frame: view.frame, date: selectDate, style: style)
         calendar.delegate = self
         calendar.dataSource = self
@@ -97,8 +101,9 @@ final class WeeklyViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        //var frame = view.safeAreaLayoutGuide.layoutFrame
         var frame = view.frame
-        frame.origin.y = 0
+        frame.origin.y = 20
         calendarView.reloadFrame(frame)
     }
     

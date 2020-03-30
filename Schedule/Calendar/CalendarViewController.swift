@@ -32,6 +32,12 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
     var PositionIndex = 0
     var dayCounter = 0
     
+    var selectDate: Date = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM.dd.yyyy"
+        return formatter.date(from: "03.30.2020") ?? Date()
+    }()
+    
     // view load function
     override func viewDidLoad() {
         
@@ -236,4 +242,31 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
     //  TODO:
     //  add tap gesture to each cell of the collection view
     // ******************************************************
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        //let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CalendarCell", for: indexPath) as! CalendarCollectionViewCell
+        let cell = collectionView.cellForItem(at: indexPath) as! CalendarCollectionViewCell
+        
+        let curDay = Int(cell.Label_CalendarCell.text ?? "0") ?? 0
+        let curMonth = {
+            return (self.Months.firstIndex(of: self.CurrentMonth) ?? 0) + 1
+        }()
+        let curYear = CalendarVars_Year
+        
+        let dateStr = "\(curMonth).\(curDay).\(curYear)"
+        
+        
+        self.selectDate = {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MM.dd.yyyy"
+            return formatter.date(from: dateStr) ?? Date()
+        }()
+        performSegue(withIdentifier: "CalendarToWeekly", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destVC = segue.destination as! WeeklyViewController
+        destVC.selectDate = self.selectDate
+    
+    }
 }
