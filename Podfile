@@ -8,5 +8,9 @@ target 'Schedule' do
   # Pods for Schedule
 
   pod 'KVKCalendar'
-
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Core'
+  pod 'Firebase/Firestore'
+  pod 'Firebase/Storage'
 end

@@ -34,6 +34,7 @@
 		649EDE8D2459688F001D56A8 /* EditTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649EDE8C2459688F001D56A8 /* EditTaskViewController.swift */; };
 		649EDE9024598E63001D56A8 /* FirebaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649EDE8F24598E63001D56A8 /* FirebaseConstants.swift */; };
 		649EDE9224598E75001D56A8 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649EDE9124598E75001D56A8 /* FirebaseManager.swift */; };
+		649EDE942459902E001D56A8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 649EDE932459902E001D56A8 /* GoogleService-Info.plist */; };
 		CC36145B24204FF500A311BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC36145A24204FF500A311BC /* AppDelegate.swift */; };
 		CC36145D24204FF500A311BC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC36145C24204FF500A311BC /* SceneDelegate.swift */; };
 		CC36146224204FF500A311BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC36146024204FF500A311BC /* Main.storyboard */; };
@@ -71,6 +72,7 @@
 		649EDE8C2459688F001D56A8 /* EditTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskViewController.swift; sourceTree = "<group>"; };
 		649EDE8F24598E63001D56A8 /* FirebaseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseConstants.swift; sourceTree = "<group>"; };
 		649EDE9124598E75001D56A8 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		649EDE932459902E001D56A8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8688B358A49BD3D29C0A9D27 /* Pods_Schedule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Schedule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE307C82376F018D03CA4949 /* Pods-Schedule.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Schedule.release.xcconfig"; path = "Target Support Files/Pods-Schedule/Pods-Schedule.release.xcconfig"; sourceTree = "<group>"; };
 		CC36145724204FF500A311BC /* Schedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Schedule.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -195,6 +197,7 @@
 				CC6043EF24208EF10024156B /* Course */,
 				CC6043EA2420885B0024156B /* Task */,
 				CC36145A24204FF500A311BC /* AppDelegate.swift */,
+				649EDE932459902E001D56A8 /* GoogleService-Info.plist */,
 				CC36145C24204FF500A311BC /* SceneDelegate.swift */,
 				CC36146024204FF500A311BC /* Main.storyboard */,
 				CC36146324204FFB00A311BC /* Assets.xcassets */,
@@ -290,6 +293,7 @@
 			files = (
 				64757113242FB08A0064892C /* events.json in Resources */,
 				CC36146724204FFB00A311BC /* LaunchScreen.storyboard in Resources */,
+				649EDE942459902E001D56A8 /* GoogleService-Info.plist in Resources */,
 				CC36146424204FFB00A311BC /* Assets.xcassets in Resources */,
 				CC36146224204FF500A311BC /* Main.storyboard in Resources */,
 			);

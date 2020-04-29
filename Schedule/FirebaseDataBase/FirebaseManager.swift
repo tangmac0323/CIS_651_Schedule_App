@@ -7,3 +7,6 @@
 //
 
 import Foundation
+import FirebaseFirestore
+import FirebaseCore
+import FirebaseAnalytics
