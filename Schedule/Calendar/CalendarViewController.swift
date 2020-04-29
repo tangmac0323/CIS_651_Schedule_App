@@ -32,17 +32,20 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
     var PositionIndex = 0
     var dayCounter = 0
     
+    /*
     var selectDate: Date = {
         let formatter = DateFormatter()
         formatter.dateFormat = "MM.dd.yyyy"
         return formatter.date(from: "03.30.2020") ?? Date()
     }()
+    */
     
     // view load function
     override func viewDidLoad() {
         
         super.viewDidLoad()
         self.initCalendar()
+        
         
     }
     
@@ -255,18 +258,37 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         let dateStr = "\(curMonth).\(curDay).\(curYear)"
         
-        
+        /*
         self.selectDate = {
             let formatter = DateFormatter()
             formatter.dateFormat = "MM.dd.yyyy"
             return formatter.date(from: dateStr) ?? Date()
         }()
-        performSegue(withIdentifier: "CalendarToWeekly", sender: self)
+        */
+        SelectedDateGlobal.sharedInstance.selectDate = {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MM.dd.yyyy"
+            return formatter.date(from: dateStr) ?? Date()
+        }()
+        
+        //performSegue(withIdentifier: "CalendarToWeekly", sender: self)
+        transmitToWeeklyView {
+            print(SelectedDateGlobal.sharedInstance.selectDate)
+            self.tabBarController?.selectedIndex = 1
+        }
     }
     
+    func transmitToWeeklyView(CompletionHandler : () -> Void) {
+        let weeklyTabCV = self.tabBarController?.viewControllers?[1] as! WeeklyViewController
+        weeklyTabCV.selectDate = SelectedDateGlobal.sharedInstance.selectDate
+        CompletionHandler()
+    }
+    
+    /*
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destVC = segue.destination as! WeeklyViewController
         destVC.selectDate = self.selectDate
     
     }
+ */
 }

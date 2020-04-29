@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import CoreData
+import CloudKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,16 +25,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // *************************************************************
         //  WeeklyView Delegate Extension
         // *************************************************************
+        /*
         window = UIWindow(frame: UIScreen.main.bounds)
         let navVC = UINavigationController(rootViewController: WeeklyViewController())
+        //let navVC = MainNavController(persistenceManager: PersistenceManager.shared, viewController: WeeklyViewController())
         navVC.isNavigationBarHidden = false
         navVC.navigationBar.isTranslucent = false
         window?.rootViewController = navVC
         window?.makeKeyAndVisible()
+        */
+        // *************************************************************
+        //  Coredata Extension
+        // *************************************************************
+        
+        let vc = MainTabBarController()
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = vc
+        window?.makeKeyAndVisible()
+        
+        
         
         return true
     }
 
+    
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
@@ -49,4 +65,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
+
 

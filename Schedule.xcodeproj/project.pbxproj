@@ -8,38 +8,69 @@
 
 /* Begin PBXBuildFile section */
 		3ECA17A46D907975036FBF05 /* Pods_Schedule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8688B358A49BD3D29C0A9D27 /* Pods_Schedule.framework */; };
-		641A4323242158CC00BEFE35 /* SU_Course_Catagory.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 641A4321242158CC00BEFE35 /* SU_Course_Catagory.xcdatamodeld */; };
 		641A4327242496FB00BEFE35 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641A4326242496FB00BEFE35 /* CalendarViewController.swift */; };
 		641A4329242560ED00BEFE35 /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641A4328242560ED00BEFE35 /* CalendarCollectionViewCell.swift */; };
 		641A432B2425AD7400BEFE35 /* CalendarVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641A432A2425AD7400BEFE35 /* CalendarVars.swift */; };
-		6475710F242E832E0064892C /* WeeklyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6475710E242E832E0064892C /* WeeklyViewController.swift */; };
-		64757111242FAFF40064892C /* WeeklyEventViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64757110242FAFF40064892C /* WeeklyEventViewer.swift */; };
 		64757113242FB08A0064892C /* events.json in Resources */ = {isa = PBXBuildFile; fileRef = 64757112242FB08A0064892C /* events.json */; };
-		64757116243191F60064892C /* AddCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64757115243191F60064892C /* AddCourseViewController.swift */; };
+		649EDDFA245793CF001D56A8 /* SchedulerGlobals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649EDDF9245793CF001D56A8 /* SchedulerGlobals.swift */; };
+		649EDDFF2457FA3C001D56A8 /* WeeklyEventViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649EDDFD2457FA3C001D56A8 /* WeeklyEventViewer.swift */; };
+		649EDE002457FA3C001D56A8 /* WeeklyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649EDDFE2457FA3C001D56A8 /* WeeklyViewController.swift */; };
+		649EDE0224581318001D56A8 /* AddCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649EDE0124581318001D56A8 /* AddCourseViewController.swift */; };
+		649EDE09245892D7001D56A8 /* EventsDB.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 649EDE07245892D7001D56A8 /* EventsDB.xcdatamodeld */; };
+		649EDE1624589B35001D56A8 /* CourseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649EDE1524589B35001D56A8 /* CourseDetailViewController.swift */; };
+		649EDE182458A0E6001D56A8 /* TaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649EDE172458A0E6001D56A8 /* TaskTableViewController.swift */; };
+		649EDE1A2458A112001D56A8 /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649EDE192458A112001D56A8 /* AddTaskViewController.swift */; };
+		649EDE1E2458A714001D56A8 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649EDE1D2458A714001D56A8 /* TaskTableViewCell.swift */; };
+		649EDE202458B2A9001D56A8 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649EDE1F2458B2A9001D56A8 /* MainTabBarController.swift */; };
+		649EDE222458EF2D001D56A8 /* CourseFirebaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649EDE212458EF2C001D56A8 /* CourseFirebaseModel.swift */; };
+		649EDE242458FB60001D56A8 /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649EDE232458FB60001D56A8 /* TaskDetailViewController.swift */; };
+		649EDE5D2459142E001D56A8 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649EDE5C2459142E001D56A8 /* PersistenceManager.swift */; };
+		649EDE5F245918DA001D56A8 /* CoredataConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649EDE5E245918DA001D56A8 /* CoredataConstants.swift */; };
+		649EDE862459416A001D56A8 /* Task+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649EDE822459416A001D56A8 /* Task+CoreDataClass.swift */; };
+		649EDE872459416A001D56A8 /* Task+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649EDE832459416A001D56A8 /* Task+CoreDataProperties.swift */; };
+		649EDE882459416A001D56A8 /* Course+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649EDE842459416A001D56A8 /* Course+CoreDataClass.swift */; };
+		649EDE892459416A001D56A8 /* Course+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649EDE852459416A001D56A8 /* Course+CoreDataProperties.swift */; };
+		649EDE8B245953C6001D56A8 /* WeeklyCoredataDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649EDE8A245953C6001D56A8 /* WeeklyCoredataDecoder.swift */; };
+		649EDE8D2459688F001D56A8 /* EditTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649EDE8C2459688F001D56A8 /* EditTaskViewController.swift */; };
+		649EDE9024598E63001D56A8 /* FirebaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649EDE8F24598E63001D56A8 /* FirebaseConstants.swift */; };
+		649EDE9224598E75001D56A8 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649EDE9124598E75001D56A8 /* FirebaseManager.swift */; };
 		CC36145B24204FF500A311BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC36145A24204FF500A311BC /* AppDelegate.swift */; };
 		CC36145D24204FF500A311BC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC36145C24204FF500A311BC /* SceneDelegate.swift */; };
 		CC36146224204FF500A311BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC36146024204FF500A311BC /* Main.storyboard */; };
 		CC36146424204FFB00A311BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC36146324204FFB00A311BC /* Assets.xcassets */; };
 		CC36146724204FFB00A311BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC36146524204FFB00A311BC /* LaunchScreen.storyboard */; };
-		CC6043E5242073860024156B /* DailyTaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6043E4242073860024156B /* DailyTaskTableViewCell.swift */; };
-		CC6043E7242073D40024156B /* DailyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6043E6242073D40024156B /* DailyViewController.swift */; };
-		CC6043E924207B490024156B /* DailyClassTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6043E824207B490024156B /* DailyClassTableViewCell.swift */; };
-		CC6043EC242089E20024156B /* AssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6043EB242089E20024156B /* AssignmentViewController.swift */; };
-		CC6043EE24208A140024156B /* AssignmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6043ED24208A140024156B /* AssignmentTableViewCell.swift */; };
-		CC6043F1242092CD0024156B /* addAssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6043F0242092CD0024156B /* addAssignmentViewController.swift */; };
-		CC6043F324209E0E0024156B /* AssignmentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6043F224209E0E0024156B /* AssignmentManager.swift */; };
+		CC6043EC242089E20024156B /* CourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6043EB242089E20024156B /* CourseViewController.swift */; };
+		CC6043EE24208A140024156B /* CourseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6043ED24208A140024156B /* CourseTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		452A89B2C493913DAF69BC6C /* Pods-Schedule.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Schedule.debug.xcconfig"; path = "Target Support Files/Pods-Schedule/Pods-Schedule.debug.xcconfig"; sourceTree = "<group>"; };
-		641A4322242158CC00BEFE35 /* SU_Course_Catagory.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SU_Course_Catagory.xcdatamodel; sourceTree = "<group>"; };
 		641A4326242496FB00BEFE35 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		641A4328242560ED00BEFE35 /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
 		641A432A2425AD7400BEFE35 /* CalendarVars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarVars.swift; sourceTree = "<group>"; };
-		6475710E242E832E0064892C /* WeeklyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyViewController.swift; sourceTree = "<group>"; };
-		64757110242FAFF40064892C /* WeeklyEventViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyEventViewer.swift; sourceTree = "<group>"; };
 		64757112242FB08A0064892C /* events.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = events.json; sourceTree = "<group>"; };
-		64757115243191F60064892C /* AddCourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseViewController.swift; sourceTree = "<group>"; };
+		649EDDF9245793CF001D56A8 /* SchedulerGlobals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulerGlobals.swift; sourceTree = "<group>"; };
+		649EDDFD2457FA3C001D56A8 /* WeeklyEventViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyEventViewer.swift; sourceTree = "<group>"; };
+		649EDDFE2457FA3C001D56A8 /* WeeklyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyViewController.swift; sourceTree = "<group>"; };
+		649EDE0124581318001D56A8 /* AddCourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseViewController.swift; sourceTree = "<group>"; };
+		649EDE08245892D7001D56A8 /* EventsDB.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EventsDB.xcdatamodel; sourceTree = "<group>"; };
+		649EDE1524589B35001D56A8 /* CourseDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailViewController.swift; sourceTree = "<group>"; };
+		649EDE172458A0E6001D56A8 /* TaskTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewController.swift; sourceTree = "<group>"; };
+		649EDE192458A112001D56A8 /* AddTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
+		649EDE1D2458A714001D56A8 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
+		649EDE1F2458B2A9001D56A8 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		649EDE212458EF2C001D56A8 /* CourseFirebaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseFirebaseModel.swift; sourceTree = "<group>"; };
+		649EDE232458FB60001D56A8 /* TaskDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
+		649EDE5C2459142E001D56A8 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
+		649EDE5E245918DA001D56A8 /* CoredataConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoredataConstants.swift; sourceTree = "<group>"; };
+		649EDE822459416A001D56A8 /* Task+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		649EDE832459416A001D56A8 /* Task+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		649EDE842459416A001D56A8 /* Course+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Course+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		649EDE852459416A001D56A8 /* Course+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Course+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		649EDE8A245953C6001D56A8 /* WeeklyCoredataDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyCoredataDecoder.swift; sourceTree = "<group>"; };
+		649EDE8C2459688F001D56A8 /* EditTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskViewController.swift; sourceTree = "<group>"; };
+		649EDE8F24598E63001D56A8 /* FirebaseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseConstants.swift; sourceTree = "<group>"; };
+		649EDE9124598E75001D56A8 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		8688B358A49BD3D29C0A9D27 /* Pods_Schedule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Schedule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE307C82376F018D03CA4949 /* Pods-Schedule.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Schedule.release.xcconfig"; path = "Target Support Files/Pods-Schedule/Pods-Schedule.release.xcconfig"; sourceTree = "<group>"; };
 		CC36145724204FF500A311BC /* Schedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Schedule.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,13 +80,8 @@
 		CC36146324204FFB00A311BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CC36146624204FFB00A311BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CC36146824204FFB00A311BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CC6043E4242073860024156B /* DailyTaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTaskTableViewCell.swift; sourceTree = "<group>"; };
-		CC6043E6242073D40024156B /* DailyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyViewController.swift; sourceTree = "<group>"; };
-		CC6043E824207B490024156B /* DailyClassTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyClassTableViewCell.swift; sourceTree = "<group>"; };
-		CC6043EB242089E20024156B /* AssignmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentViewController.swift; sourceTree = "<group>"; };
-		CC6043ED24208A140024156B /* AssignmentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentTableViewCell.swift; sourceTree = "<group>"; };
-		CC6043F0242092CD0024156B /* addAssignmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addAssignmentViewController.swift; sourceTree = "<group>"; };
-		CC6043F224209E0E0024156B /* AssignmentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentManager.swift; sourceTree = "<group>"; };
+		CC6043EB242089E20024156B /* CourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseViewController.swift; sourceTree = "<group>"; };
+		CC6043ED24208A140024156B /* CourseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,20 +113,18 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		6406EF372420A7AD00FA7ABF /* AssignmentManager */ = {
+		641A4320242158A300BEFE35 /* LocalDatabase */ = {
 			isa = PBXGroup;
 			children = (
-				CC6043F224209E0E0024156B /* AssignmentManager.swift */,
+				649EDE822459416A001D56A8 /* Task+CoreDataClass.swift */,
+				649EDE832459416A001D56A8 /* Task+CoreDataProperties.swift */,
+				649EDE842459416A001D56A8 /* Course+CoreDataClass.swift */,
+				649EDE852459416A001D56A8 /* Course+CoreDataProperties.swift */,
+				649EDE07245892D7001D56A8 /* EventsDB.xcdatamodeld */,
+				649EDE5C2459142E001D56A8 /* PersistenceManager.swift */,
+				649EDE5E245918DA001D56A8 /* CoredataConstants.swift */,
 			);
-			path = AssignmentManager;
-			sourceTree = "<group>";
-		};
-		641A4320242158A300BEFE35 /* Database */ = {
-			isa = PBXGroup;
-			children = (
-				641A4321242158CC00BEFE35 /* SU_Course_Catagory.xcdatamodeld */,
-			);
-			path = Database;
+			path = LocalDatabase;
 			sourceTree = "<group>";
 		};
 		641A43242422B29300BEFE35 /* Calendar */ = {
@@ -116,19 +140,30 @@
 		641A43252424015C00BEFE35 /* Weekly */ = {
 			isa = PBXGroup;
 			children = (
+				649EDDFD2457FA3C001D56A8 /* WeeklyEventViewer.swift */,
+				649EDDFE2457FA3C001D56A8 /* WeeklyViewController.swift */,
 				64757112242FB08A0064892C /* events.json */,
-				6475710E242E832E0064892C /* WeeklyViewController.swift */,
-				64757110242FAFF40064892C /* WeeklyEventViewer.swift */,
+				649EDE8A245953C6001D56A8 /* WeeklyCoredataDecoder.swift */,
 			);
 			path = Weekly;
 			sourceTree = "<group>";
 		};
-		64757114243191C90064892C /* AddCourse */ = {
+		649EDDF82457939D001D56A8 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				64757115243191F60064892C /* AddCourseViewController.swift */,
+				649EDDF9245793CF001D56A8 /* SchedulerGlobals.swift */,
+				649EDE1F2458B2A9001D56A8 /* MainTabBarController.swift */,
 			);
-			path = AddCourse;
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		649EDE8E24598E3B001D56A8 /* FirebaseDataBase */ = {
+			isa = PBXGroup;
+			children = (
+				649EDE8F24598E63001D56A8 /* FirebaseConstants.swift */,
+				649EDE9124598E75001D56A8 /* FirebaseManager.swift */,
+			);
+			path = FirebaseDataBase;
 			sourceTree = "<group>";
 		};
 		CC36144E24204FF500A311BC = {
@@ -152,13 +187,13 @@
 		CC36145924204FF500A311BC /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
-				64757114243191C90064892C /* AddCourse */,
+				649EDE8E24598E3B001D56A8 /* FirebaseDataBase */,
+				649EDDF82457939D001D56A8 /* Utilities */,
 				641A43252424015C00BEFE35 /* Weekly */,
 				641A43242422B29300BEFE35 /* Calendar */,
-				641A4320242158A300BEFE35 /* Database */,
-				6406EF372420A7AD00FA7ABF /* AssignmentManager */,
-				CC6043EF24208EF10024156B /* Assignment */,
-				CC6043EA2420885B0024156B /* Daily */,
+				641A4320242158A300BEFE35 /* LocalDatabase */,
+				CC6043EF24208EF10024156B /* Course */,
+				CC6043EA2420885B0024156B /* Task */,
 				CC36145A24204FF500A311BC /* AppDelegate.swift */,
 				CC36145C24204FF500A311BC /* SceneDelegate.swift */,
 				CC36146024204FF500A311BC /* Main.storyboard */,
@@ -169,24 +204,28 @@
 			path = Schedule;
 			sourceTree = "<group>";
 		};
-		CC6043EA2420885B0024156B /* Daily */ = {
+		CC6043EA2420885B0024156B /* Task */ = {
 			isa = PBXGroup;
 			children = (
-				CC6043E824207B490024156B /* DailyClassTableViewCell.swift */,
-				CC6043E6242073D40024156B /* DailyViewController.swift */,
-				CC6043E4242073860024156B /* DailyTaskTableViewCell.swift */,
+				649EDE172458A0E6001D56A8 /* TaskTableViewController.swift */,
+				649EDE192458A112001D56A8 /* AddTaskViewController.swift */,
+				649EDE1D2458A714001D56A8 /* TaskTableViewCell.swift */,
+				649EDE232458FB60001D56A8 /* TaskDetailViewController.swift */,
+				649EDE8C2459688F001D56A8 /* EditTaskViewController.swift */,
 			);
-			path = Daily;
+			path = Task;
 			sourceTree = "<group>";
 		};
-		CC6043EF24208EF10024156B /* Assignment */ = {
+		CC6043EF24208EF10024156B /* Course */ = {
 			isa = PBXGroup;
 			children = (
-				CC6043ED24208A140024156B /* AssignmentTableViewCell.swift */,
-				CC6043EB242089E20024156B /* AssignmentViewController.swift */,
-				CC6043F0242092CD0024156B /* addAssignmentViewController.swift */,
+				CC6043ED24208A140024156B /* CourseTableViewCell.swift */,
+				CC6043EB242089E20024156B /* CourseViewController.swift */,
+				649EDE0124581318001D56A8 /* AddCourseViewController.swift */,
+				649EDE1524589B35001D56A8 /* CourseDetailViewController.swift */,
+				649EDE212458EF2C001D56A8 /* CourseFirebaseModel.swift */,
 			);
-			path = Assignment;
+			path = Course;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -305,22 +344,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				649EDE242458FB60001D56A8 /* TaskDetailViewController.swift in Sources */,
 				641A4329242560ED00BEFE35 /* CalendarCollectionViewCell.swift in Sources */,
-				64757116243191F60064892C /* AddCourseViewController.swift in Sources */,
-				641A4323242158CC00BEFE35 /* SU_Course_Catagory.xcdatamodeld in Sources */,
+				649EDE002457FA3C001D56A8 /* WeeklyViewController.swift in Sources */,
+				649EDE5D2459142E001D56A8 /* PersistenceManager.swift in Sources */,
+				649EDE202458B2A9001D56A8 /* MainTabBarController.swift in Sources */,
+				649EDE5F245918DA001D56A8 /* CoredataConstants.swift in Sources */,
+				649EDDFA245793CF001D56A8 /* SchedulerGlobals.swift in Sources */,
 				CC36145B24204FF500A311BC /* AppDelegate.swift in Sources */,
+				649EDE862459416A001D56A8 /* Task+CoreDataClass.swift in Sources */,
+				649EDE09245892D7001D56A8 /* EventsDB.xcdatamodeld in Sources */,
+				649EDE8B245953C6001D56A8 /* WeeklyCoredataDecoder.swift in Sources */,
+				649EDE182458A0E6001D56A8 /* TaskTableViewController.swift in Sources */,
 				CC36145D24204FF500A311BC /* SceneDelegate.swift in Sources */,
-				64757111242FAFF40064892C /* WeeklyEventViewer.swift in Sources */,
 				641A4327242496FB00BEFE35 /* CalendarViewController.swift in Sources */,
-				CC6043F324209E0E0024156B /* AssignmentManager.swift in Sources */,
-				CC6043E924207B490024156B /* DailyClassTableViewCell.swift in Sources */,
-				6475710F242E832E0064892C /* WeeklyViewController.swift in Sources */,
-				CC6043EE24208A140024156B /* AssignmentTableViewCell.swift in Sources */,
-				CC6043E7242073D40024156B /* DailyViewController.swift in Sources */,
+				649EDDFF2457FA3C001D56A8 /* WeeklyEventViewer.swift in Sources */,
+				649EDE0224581318001D56A8 /* AddCourseViewController.swift in Sources */,
+				649EDE1E2458A714001D56A8 /* TaskTableViewCell.swift in Sources */,
+				649EDE892459416A001D56A8 /* Course+CoreDataProperties.swift in Sources */,
+				649EDE1624589B35001D56A8 /* CourseDetailViewController.swift in Sources */,
+				649EDE9224598E75001D56A8 /* FirebaseManager.swift in Sources */,
+				649EDE8D2459688F001D56A8 /* EditTaskViewController.swift in Sources */,
+				649EDE9024598E63001D56A8 /* FirebaseConstants.swift in Sources */,
+				649EDE1A2458A112001D56A8 /* AddTaskViewController.swift in Sources */,
+				649EDE882459416A001D56A8 /* Course+CoreDataClass.swift in Sources */,
+				649EDE222458EF2D001D56A8 /* CourseFirebaseModel.swift in Sources */,
+				CC6043EE24208A140024156B /* CourseTableViewCell.swift in Sources */,
 				641A432B2425AD7400BEFE35 /* CalendarVars.swift in Sources */,
-				CC6043E5242073860024156B /* DailyTaskTableViewCell.swift in Sources */,
-				CC6043EC242089E20024156B /* AssignmentViewController.swift in Sources */,
-				CC6043F1242092CD0024156B /* addAssignmentViewController.swift in Sources */,
+				649EDE872459416A001D56A8 /* Task+CoreDataProperties.swift in Sources */,
+				CC6043EC242089E20024156B /* CourseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,13 +572,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		641A4321242158CC00BEFE35 /* SU_Course_Catagory.xcdatamodeld */ = {
+		649EDE07245892D7001D56A8 /* EventsDB.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				641A4322242158CC00BEFE35 /* SU_Course_Catagory.xcdatamodel */,
+				649EDE08245892D7001D56A8 /* EventsDB.xcdatamodel */,
 			);
-			currentVersion = 641A4322242158CC00BEFE35 /* SU_Course_Catagory.xcdatamodel */;
-			path = SU_Course_Catagory.xcdatamodeld;
+			currentVersion = 649EDE08245892D7001D56A8 /* EventsDB.xcdatamodel */;
+			path = EventsDB.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

@@ -8,13 +8,15 @@
 
 import UIKit
 
-class AssignmentTableViewCell: UITableViewCell {
+class CourseTableViewCell: UITableViewCell {
     
     
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var courseLabel: UILabel!
     
+    var classID : String?
+    var sectionID : String?
     
-    @IBOutlet weak var taskLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,5 +28,4 @@ class AssignmentTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
 }

@@ -11,15 +11,25 @@ import KVKCalendar
 
 final class WeeklyViewController: UIViewController {
     
-    private var passInDateStr = "03.30.2020"
+    //private var passInDateStr = "03.30.2020"
     
     private var events = [Event]()
+    private var tasks = [Task]()
+    private var courses = [Course]()
+    
+    // *********************************************************************************
+    // initialize with core data persistence
+    // *********************************************************************************
+    let coredataRef = PersistenceManager.shared
     
     var selectDate: Date = {
         let formatter = DateFormatter()
         formatter.dateFormat = "MM.dd.yyyy"
-        return formatter.date(from: "03.30.2020") ?? Date()
+        return Date()
+        //return formatter.date(from : self)
     }()
+    
+    //var selectDate = SelectedDate.sharedInstance.selectDate
     
     private lazy var todayButton: UIBarButtonItem = {
         let button = UIBarButtonItem(title: "Today", style: .done, target: self, action: #selector(today))
@@ -49,13 +59,23 @@ final class WeeklyViewController: UIViewController {
         return style
     }()
     
+    
     private lazy var calendarView: CalendarView = {
+        
+        /*
+        print("View Frame:")
+        print(view.frame)
+        
+        print("Safe Area Frame")
+        print(view.safeAreaLayoutGuide.layoutFrame)
+        */
         
         let calendar = CalendarView(frame: view.frame, date: selectDate, style: style)
         calendar.delegate = self
         calendar.dataSource = self
         return calendar
     }()
+    
     
     private lazy var segmentedControl: UISegmentedControl = {
         let array: [CalendarType]
@@ -82,6 +102,7 @@ final class WeeklyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         if #available(iOS 13.0, *) {
             view.backgroundColor = .systemBackground
         } else {
@@ -97,14 +118,50 @@ final class WeeklyViewController: UIViewController {
             self.events = events
             self.calendarView.reloadData()
         }
+ 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        /*
+        if #available(iOS 13.0, *) {
+            view.backgroundColor = .systemBackground
+        } else {
+            view.backgroundColor = .white
+        }
+        view.addSubview(calendarView)
+        navigationItem.titleView = segmentedControl
+        navigationItem.rightBarButtonItem = todayButton
+        
+        calendarView.addEventViewToDay(view: eventViewer)
+        
+        */
+        
+        loadEvents { [unowned self] (events) in
+            self.events = events
+            self.calendarView.reloadData()
+        }
+
+        
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
+        // get the size of the tab bar
+        let navBarHeight = self.navigationController?.navigationBar.frame.size.height
+        
+        //var myFrame = view.frame
+        //myFrame.size.height -= tabBarHeight!
+        //myFrame.origin.x += 100
+        //myFrame.origin.y += tabBarHeight!
+        
         //var frame = view.safeAreaLayoutGuide.layoutFrame
         var frame = view.frame
-        frame.origin.y = 20
+        frame.origin.y += navBarHeight!
         calendarView.reloadFrame(frame)
+        
+        
     }
     
     @objc func today(sender: UIBarButtonItem) {
@@ -144,7 +201,7 @@ extension WeeklyViewController: CalendarDelegate {
     }
     
     func didAddEvent(_ date: Date?) {
-        print(date)
+        //print(date)
     }
     
     func didSelectDate(_ date: Date?, type: CalendarType, frame: CGRect?) {
@@ -247,6 +304,7 @@ struct ItemData: Decodable {
         data = try container.decode([Item].self, forKey: CodingKeys.data)
     }
 }
+
 struct Item: Decodable {
     let id: String
     let title: String
@@ -304,3 +362,36 @@ extension UIColor {
         )
     }
 }
+
+
+extension WeeklyViewController {
+    
+    // *********************************************************************************
+    // initialize with core data persistence
+    // *********************************************************************************
+    func convertTaskToEvent(task: Task) -> Event {
+        var event = Event()
+        event.id = task.selfID
+        
+        /*
+        event.id = idx
+        event.start = startDate
+        event.end = endDate
+        event.color = EventColor(item.color)
+        event.isAllDay = item.allDay
+        event.isContainsFile = !item.files.isEmpty
+        event.textForMonth = item.title
+        
+        if item.allDay {
+            event.text = "\(item.title)"
+        } else {
+            event.text = "\(startTime) - \(endTime)\n\(item.title)"
+        }
+        events.append(event)
+        */
+        
+        return event
+    }
+}
+
+
