@@ -128,8 +128,5 @@ class MyDateManager {
         //return (sec/(60*60*24), sec/(60*60), sec/60)
         
     }
-    
-    
-    
 }
 

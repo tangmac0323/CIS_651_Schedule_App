@@ -26,5 +26,7 @@ extension Task {
     @NSManaged public var status: Bool
     @NSManaged public var title: String?
     @NSManaged public var selfID: String?
+    @NSManaged public var startTimeForCourse: String?
+    @NSManaged public var notificationID: String?
 
 }

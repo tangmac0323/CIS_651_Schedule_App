@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19D76" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Course" representedClassName=".Course" syncable="YES">
-        <attribute name="classID" attributeType="String"/>
         <attribute name="college" attributeType="String"/>
         <attribute name="content" attributeType="String"/>
         <attribute name="course" attributeType="String"/>
         <attribute name="endDate" attributeType="String"/>
-        <attribute name="endTime" attributeType="String"/>
+        <attribute name="endTime" optional="YES" attributeType="String"/>
         <attribute name="instructor" attributeType="String"/>
         <attribute name="notification" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="notificationID" optional="YES" attributeType="String"/>
+        <attribute name="onlineType" optional="YES" attributeType="String"/>
         <attribute name="room" attributeType="String"/>
         <attribute name="sectionID" attributeType="String"/>
         <attribute name="selfID" optional="YES" attributeType="String"/>
         <attribute name="startDate" attributeType="String"/>
-        <attribute name="startTime" attributeType="String"/>
+        <attribute name="startTime" optional="YES" attributeType="String"/>
+        <attribute name="subjectArea" optional="YES" attributeType="String"/>
         <attribute name="unit" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="weekdays" attributeType="String"/>
     </entity>
@@ -24,12 +26,14 @@
         <attribute name="endTime" attributeType="String"/>
         <attribute name="notification" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="notificationAheadTime" attributeType="Decimal" defaultValueString="0.0"/>
+        <attribute name="notificationID" optional="YES" attributeType="String"/>
         <attribute name="selfID" optional="YES" attributeType="String"/>
+        <attribute name="startTimeForCourse" optional="YES" attributeType="String"/>
         <attribute name="status" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="title" attributeType="String"/>
     </entity>
     <elements>
-        <element name="Course" positionX="-54" positionY="54" width="128" height="268"/>
-        <element name="Task" positionX="-63" positionY="-18" width="128" height="178"/>
+        <element name="Course" positionX="-54" positionY="54" width="128" height="298"/>
+        <element name="Task" positionX="-63" positionY="-18" width="128" height="208"/>
     </elements>
 </model>

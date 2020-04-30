@@ -17,7 +17,7 @@ extension Course {
         return NSFetchRequest<Course>(entityName: "Course")
     }
 
-    @NSManaged public var classID: String?
+    @NSManaged public var subjectArea: String?
     @NSManaged public var college: String?
     @NSManaged public var content: String?
     @NSManaged public var course: String?
@@ -32,5 +32,8 @@ extension Course {
     @NSManaged public var unit: Double
     @NSManaged public var weekdays: String?
     @NSManaged public var selfID: String?
-
+    @NSManaged public var onlineType: String?
+    @NSManaged public var notificationID: String?
+    
+    
 }

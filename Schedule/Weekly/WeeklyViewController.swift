@@ -244,6 +244,8 @@ extension WeeklyViewController {
     func loadEvents(completion: ([Event]) -> Void) {
         
         var events = [Event]()
+        
+        /*
         let decoder = JSONDecoder()
                 
         guard let path = Bundle.main.path(forResource: "events", ofType: "json"),
@@ -271,6 +273,13 @@ extension WeeklyViewController {
                 event.text = "\(startTime) - \(endTime)\n\(item.title)"
             }
             events.append(event)
+        }
+        */
+        
+        
+        let taskList = coredataRef.getTaskList()
+        for task in taskList {
+            events.append(convertTaskToEvent(task: task))
         }
         completion(events)
     }
@@ -370,8 +379,34 @@ extension WeeklyViewController {
     // initialize with core data persistence
     // *********************************************************************************
     func convertTaskToEvent(task: Task) -> Event {
+        let formatter = MyDateManager()
+        
         var event = Event()
         event.id = task.selfID
+        
+        
+        event.end = formatter.FormattedStringToDate(dateStr: task.endTime!)
+        
+        let endTime = timeFormatter(date: event.end)
+        
+        event.isAllDay = false
+        event.isContainsFile = false
+        event.textForMonth = task.title!
+        
+        // calculate the start time using ahead notification
+        if task.category == EventConstants.EventCategory.Task {
+            event.start = CalcNotificationDate(task: task)
+            event.text = "\(event.textForMonth) due at\n\(endTime)"
+        }
+        // course
+        else {
+            event.start = formatter.FormattedStringToDate(dateStr: task.startTimeForCourse!)
+            let startTime = timeFormatter(date: event.start)
+            event.eventData = task.content!
+            event.text = "\(startTime) - \(endTime)\n\(event.textForMonth)\n\(task.content!)"
+        }
+        
+        
         
         /*
         event.id = idx
@@ -392,6 +427,20 @@ extension WeeklyViewController {
         
         return event
     }
+    
+    // *********************************************************************************
+    // calculate the notification date
+    // *********************************************************************************
+    func CalcNotificationDate(task : Task) -> Date {
+        let formatter = MyDateManager()
+        let endDate = formatter.FormattedStringToDate(dateStr: task.endTime!)
+        let notificationDate = endDate - Double(task.notificationAheadTime!)
+        return notificationDate
+    }
+    
+    // *********************************************************************************
+    // get the color
+    // *********************************************************************************
 }
 
 

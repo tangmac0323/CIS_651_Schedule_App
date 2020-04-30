@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 
 struct TaskCoredataConstants {
@@ -21,8 +22,9 @@ struct TaskCoredataConstants {
     static let Status = "status"
     static let Title = "title"
     static let SelfID = "selfID"
+    static let StartTimeForCourse = "startTimeForCourse"
     
-    static let NotificationAheadTimeInSec = 600.0
+    static let NotificationAheadTimeInSec = 1800.0
     
     
 }
@@ -36,6 +38,11 @@ struct EventConstants {
     struct EventCategory {
         static let Task = "Task"
         static let Course = "Course"
+    }
+    
+    struct EventColor {
+        static let Task = UIColor.green
+        static let Course = UIColor.yellow
     }
 }
 

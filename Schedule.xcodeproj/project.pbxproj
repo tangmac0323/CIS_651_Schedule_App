@@ -30,7 +30,6 @@
 		649EDE872459416A001D56A8 /* Task+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649EDE832459416A001D56A8 /* Task+CoreDataProperties.swift */; };
 		649EDE882459416A001D56A8 /* Course+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649EDE842459416A001D56A8 /* Course+CoreDataClass.swift */; };
 		649EDE892459416A001D56A8 /* Course+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649EDE852459416A001D56A8 /* Course+CoreDataProperties.swift */; };
-		649EDE8B245953C6001D56A8 /* WeeklyCoredataDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649EDE8A245953C6001D56A8 /* WeeklyCoredataDecoder.swift */; };
 		649EDE8D2459688F001D56A8 /* EditTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649EDE8C2459688F001D56A8 /* EditTaskViewController.swift */; };
 		649EDE9024598E63001D56A8 /* FirebaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649EDE8F24598E63001D56A8 /* FirebaseConstants.swift */; };
 		649EDE9224598E75001D56A8 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649EDE9124598E75001D56A8 /* FirebaseManager.swift */; };
@@ -68,7 +67,6 @@
 		649EDE832459416A001D56A8 /* Task+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		649EDE842459416A001D56A8 /* Course+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Course+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		649EDE852459416A001D56A8 /* Course+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Course+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
-		649EDE8A245953C6001D56A8 /* WeeklyCoredataDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyCoredataDecoder.swift; sourceTree = "<group>"; };
 		649EDE8C2459688F001D56A8 /* EditTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskViewController.swift; sourceTree = "<group>"; };
 		649EDE8F24598E63001D56A8 /* FirebaseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseConstants.swift; sourceTree = "<group>"; };
 		649EDE9124598E75001D56A8 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
@@ -145,7 +143,6 @@
 				649EDDFD2457FA3C001D56A8 /* WeeklyEventViewer.swift */,
 				649EDDFE2457FA3C001D56A8 /* WeeklyViewController.swift */,
 				64757112242FB08A0064892C /* events.json */,
-				649EDE8A245953C6001D56A8 /* WeeklyCoredataDecoder.swift */,
 			);
 			path = Weekly;
 			sourceTree = "<group>";
@@ -358,7 +355,6 @@
 				CC36145B24204FF500A311BC /* AppDelegate.swift in Sources */,
 				649EDE862459416A001D56A8 /* Task+CoreDataClass.swift in Sources */,
 				649EDE09245892D7001D56A8 /* EventsDB.xcdatamodeld in Sources */,
-				649EDE8B245953C6001D56A8 /* WeeklyCoredataDecoder.swift in Sources */,
 				649EDE182458A0E6001D56A8 /* TaskTableViewController.swift in Sources */,
 				CC36145D24204FF500A311BC /* SceneDelegate.swift in Sources */,
 				641A4327242496FB00BEFE35 /* CalendarViewController.swift in Sources */,
