@@ -24,6 +24,9 @@ class TaskDetailViewController: UIViewController {
     
     // reference to coredata db
     let coredataRef = PersistenceManager.shared
+    let notificationManager = NotificationManager.shared
+    
+    
     var selectedObjectID : String = ""  // varaible to take the pass in id
     var selectedObject : Task?
     
@@ -115,5 +118,27 @@ class TaskDetailViewController: UIViewController {
                }
            }
     }
+    
+    @IBAction func NotificationButton_Switched(_ sender: Any) {
+        
+        
+        let myFormatter = MyDateManager()
+        let dueDate = myFormatter.FormattedStringToDate(dateStr: self.selectedObject!.endTime!)
+        let notifyDate = dueDate - Double (60 * 60 * 24)
+        let notifyStr = "\(self.selectedObject!.title!)"
+        let notifyType = "Task"
+        let notifyID = selectedObject?.objectID.uriRepresentation().absoluteString
+        
+        // create a notification if is on
+        if self.Notification_Switch.isOn {
+            self.notificationManager.setNotify(date: notifyDate, str: notifyStr, type: notifyType, id: notifyID!)
+        }
+        // remove the notification if is off
+        else{
+            self.notificationManager.removeNotify(id: notifyID!)
+        }
+    }
+    
+    
 }
 

@@ -32,6 +32,7 @@ class CourseDetailViewController : UIViewController {
     var courseObj: Course?
     
     let coredataRef = PersistenceManager.shared
+    let notificationManager = NotificationManager.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -128,6 +129,177 @@ class CourseDetailViewController : UIViewController {
         }
         
         _ = self.navigationController?.popViewController(animated: true)
+    }
+    
+    // *********************************************************************************
+       // save all weekdays(class day) into a Date list
+       // time interval: startDate ~ endDate
+       // *********************************************************************************
+
+       func getWeekdayList(startDate: Date?, endDate: Date?, weekdays: String?, startTime: String?) -> [Date] {
+           
+           if startDate == nil || endDate == nil || weekdays == nil || startTime == nil ||  weekdays == "" || startTime == "" {
+               return []
+           }
+           
+           //convert weekday patterns into numbers
+           //targetWeekdays is the matched weekdays from startDate to endDate
+           var targetWeekdays: [Int] = []
+           switch weekdays! {
+           case "M":
+               targetWeekdays = [2]
+           case "T":
+               targetWeekdays = [3]
+           case "W":
+               targetWeekdays = [4]
+           case "TH":
+               targetWeekdays = [5]
+           case "F":
+               targetWeekdays = [6]
+           case "Sa":
+               targetWeekdays = [7]
+           case "Su":
+               targetWeekdays = [1]
+           case "MW":
+               targetWeekdays = [2, 4]
+           case "TTH":
+               targetWeekdays = [3, 5]
+               
+           default:
+               targetWeekdays = []
+           }
+           
+           var resultList: [Date] = []
+           let calendar = Calendar.current
+           let components = DateComponents(hour: 0, minute: 0, second: 0)
+           
+           let startDay = calendar.component(.weekday, from: startDate!)
+           
+           //if startDay is matched, add it into the result list
+           if targetWeekdays.contains(startDay) {
+               
+               let formatter = DateFormatter()
+               formatter.dateFormat = "yyyy-MM-dd'T'"
+               let dateStr = formatter.string(from: startDate!)
+               let timeStr = startTime!+":00+00:00"
+               let str = dateStr + timeStr
+               
+               //convert formatted string back to date
+               let dateFormatter = DateFormatter()
+               dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+               resultList.append(dateFormatter.date(from: str)!)
+               
+           }
+           
+           //iterate the dates from startDate to endDate
+           calendar.enumerateDates(startingAfter: startDate!, matching: components, matchingPolicy: .nextTime) { (date, strict, stop) in
+               if let date = date {
+                   if date <= endDate! {
+                       let weekday = calendar.component(.weekday, from: date)
+                       
+                       if targetWeekdays.contains(weekday) {
+                           
+                           let formatter = DateFormatter()
+                           formatter.dateFormat = "yyyy-MM-dd'T'"
+                           let dateStr = formatter.string(from: date)
+                           let timeStr = startTime!+":00+00:00"
+                           let str = dateStr + timeStr
+                           
+                           //convert formatted string back to date
+                           let dateFormatter = DateFormatter()
+                           dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+                           resultList.append(dateFormatter.date(from: str)!)
+                       }
+                   }
+                   else {
+                       stop = true
+                   }
+               }
+           }
+           
+           return resultList
+    }
+    
+    // *********************************************************************************
+    // notification switch change
+    // *********************************************************************************
+    @IBAction func NotifySwitch_Changed(_ sender: Any) {
+        
+        // create a notification if is on
+        if self.Notification_Switch.isOn {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MM/dd/yyyy"
+            let startDate = formatter.date(from: self.courseObj!.startDate!)
+            let endDate = formatter.date(from: self.courseObj!.endDate!)
+            
+            if let courseObj = self.courseObj {
+                // generate the Date list by weekdays from the course
+                let dateList = self.getWeekdayList(startDate: startDate, endDate: endDate, weekdays: courseObj.weekdays, startTime: courseObj.startTime)
+                
+                // UPDATE Class count
+                self.courseObj?.setValue(dateList.count, forKey: "classCount")
+                self.coredataRef.saveContext()
+                
+                // create notification for each date with unique id
+                var idCount = 0
+                for dateObj in dateList {
+                    //let myFormatter = MyDateManager()
+                    //let dueDate = myFormatter.FormattedStringToDate(dateStr: self.selectedObject!.endTime!)
+                    
+                    
+                    let notifyDate = dateObj - Double (60 * 10)
+                    let notifyStr = "\(self.courseObj?.course)"
+                    let notifyType = "Class"
+                    let notifyID = "\(self.courseObj!.objectID.uriRepresentation().absoluteString)-\(idCount)"
+                    
+                    self.notificationManager.setNotify(date: notifyDate, str: notifyStr, type: notifyType, id: notifyID)
+                    
+                    idCount += 1    // increment id counter
+                }
+                
+                //print("Current Notification: \(self.notificationManager.notifyCenter.accessibilityElementCount())")
+                self.notificationManager.notifyCenter.getPendingNotificationRequests { (notList) in
+                    print("Current pending notification after adding: \(notList.count)")
+                }
+                
+            }
+        }
+        // remove the notification if is off
+        else{
+            // extract the class count of the course object
+            let idCount = self.courseObj?.classCount as! Int
+            for index in 1...idCount {
+                let id_postfix = index - 1
+                let notifyID = "\(self.courseObj!.objectID.uriRepresentation().absoluteString)-\(id_postfix)"
+                self.notificationManager.removeNotify(id: notifyID)
+                
+            }
+            
+            self.notificationManager.notifyCenter.getPendingNotificationRequests { (notList) in
+                print("Current pending notification after removing: \(notList.count)")
+            }
+            
+        }
+
+        
+        //let dateList = self.getWeekdayList(startDate: course, endDate: <#T##Date?#>, weekdays: <#T##String?#>, startTime: <#T##String?#>)
+        /*
+        let myFormatter = MyDateManager()
+        let dueDate = myFormatter.FormattedStringToDate(dateStr: self.selectedObject!.endTime!)
+        let notifyDate = dueDate - Double (60 * 60 * 24)
+        let notifyStr = "\(self.selectedObject!.title!)"
+        let notifyType = "Task"
+        let notifyID = selectedObject?.objectID.uriRepresentation().absoluteString
+        
+        // create a notification if is on
+        if self.Notification_Switch.isOn {
+            self.notificationManager.setNotify(date: notifyDate, str: notifyStr, type: notifyType, id: notifyID!)
+        }
+        // remove the notification if is off
+        else{
+            self.notificationManager.removeNotify(id: notifyID!)
+        }
+         */
     }
     
 }

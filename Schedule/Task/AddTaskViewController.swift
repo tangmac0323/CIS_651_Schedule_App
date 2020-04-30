@@ -15,7 +15,6 @@ class AddTaskViewController : UIViewController {
     
     @IBOutlet weak var TaskTitle_TextField: UITextField!
     @IBOutlet weak var TaskDeadLine_TextField: UITextField!
-    @IBOutlet weak var Notification_Switch: UISwitch!
     
     @IBOutlet weak var Note_TextView: UITextView!
     
@@ -79,7 +78,7 @@ class AddTaskViewController : UIViewController {
 
         task.endTime = self.deadLineStr
         task.title = TaskTitle_TextField.text
-        task.notification = Notification_Switch.isOn
+        //task.notification = Notification_Switch.isOn
         task.status = false
         task.content = Note_TextView.text
         task.category = EventConstants.EventCategory.Task
@@ -109,7 +108,7 @@ class AddTaskViewController : UIViewController {
     
     @objc func datePickerValueChanged(sender : UIDatePicker) {
         
-            let myFormatter = MyDateManager()
+        let myFormatter = MyDateManager()
         /*
         let formatter = DateFormatter()
         

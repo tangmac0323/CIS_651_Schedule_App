@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import CloudKit
 import Firebase
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -47,6 +48,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = vc
         window?.makeKeyAndVisible()
+        
+        // *************************************************************
+        //  Notification Extension
+        // *************************************************************
+        let center = UNUserNotificationCenter.current()
+        //let center = NotificationManager.notifyCenter
+        
+        //request user authorization for the notification
+        center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
+            if error != nil {
+                print("request authorization error")
+            }
+        }
         
         
         

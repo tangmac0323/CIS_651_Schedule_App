@@ -79,8 +79,18 @@ class TaskTableViewController : UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TaskTableViewCell") as! TaskTableViewCell
         let task = TaskList[indexPath.row] as! Task
+        
+        let myFormatter = MyDateManager()
+        let ddlDate = myFormatter.FormattedStringToDate(dateStr: task.endTime!)
+        
+        // check the task status
+        if ddlDate <= Date() {
+            task.setValue(true, forKey: "status")
+            coredataRef.saveContext()
+        }
+        
         cell.TaskTitle_Label.text = task.title
-        cell.TaskDLL_Label.text = task.endTime
+        cell.TaskDLL_Label.text = myFormatter.FormattedToSimplified(datestr: task.endTime!)
         cell.TaskStatus_Label.text = convertTaskStatusToString(status: task.status)
         
         cell.objectID = task.objectID.uriRepresentation().absoluteString
@@ -113,10 +123,10 @@ class TaskTableViewController : UITableViewController {
     
     func convertTaskStatusToString(status : Bool) -> String {
         if status == true {
-            return "Completed"
+            return "Dued"
         }
         else{
-            return "Incompleted"
+            return "In Progress"
         }
     }
     

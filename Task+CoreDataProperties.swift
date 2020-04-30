@@ -28,5 +28,6 @@ extension Task {
     @NSManaged public var selfID: String?
     @NSManaged public var startTimeForCourse: String?
     @NSManaged public var notificationID: String?
+    @NSManaged public var roomForCourse: String?
 
 }

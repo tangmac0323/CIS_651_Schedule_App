@@ -23,7 +23,7 @@ class AddCourseViewController : UIViewController {
     @IBOutlet weak var College_TextField: UITextField!
     @IBOutlet weak var SubjectArea_TextField: UITextField!
     @IBOutlet weak var CourseTitle_TextField: UITextField!
-    @IBOutlet weak var ClassID_TextField: UITextField!
+    //@IBOutlet weak var ClassID_TextField: UITextField!
     @IBOutlet weak var SectionID_TextField: UITextField!
     @IBOutlet weak var OnlineType_TextField: UITextField!
     
@@ -36,7 +36,6 @@ class AddCourseViewController : UIViewController {
     @IBOutlet weak var Instructor_Label: UILabel!
     @IBOutlet weak var OnlineReminder_Label: UILabel!
     
-    @IBOutlet weak var Notification_Switch: UISwitch!
     @IBOutlet weak var Description_TextView: UITextView!
     
     
@@ -109,7 +108,7 @@ class AddCourseViewController : UIViewController {
         self.Description_TextView.text = ""
         
         self.CourseTitle_TextField.text = ""
-        self.ClassID_TextField.text = ""
+        //self.ClassID_TextField.text = ""
         self.SubjectArea_TextField.text = ""
         self.SectionID_TextField.text = ""
         self.College_TextField.text = ""
@@ -117,7 +116,7 @@ class AddCourseViewController : UIViewController {
 
         
         self.CourseTitle_TextField.placeholder = "course title"
-        self.ClassID_TextField.placeholder = "class ID"
+        //self.ClassID_TextField.placeholder = "class ID"
         self.SubjectArea_TextField.placeholder = "subject are"
         self.SectionID_TextField.placeholder = "section ID"
         self.College_TextField.placeholder = "college"
@@ -127,7 +126,7 @@ class AddCourseViewController : UIViewController {
         self.College_TextField.delegate = self
         self.SubjectArea_TextField.delegate = self
         self.CourseTitle_TextField.delegate = self
-        self.ClassID_TextField.delegate = self
+        //self.ClassID_TextField.delegate = self
         self.SectionID_TextField.delegate = self
         self.OnlineType_TextField.delegate = self
         
@@ -139,8 +138,8 @@ class AddCourseViewController : UIViewController {
         
         self.CourseTitle_TextField.isUserInteractionEnabled = true
         
-        self.ClassID_TextField.isUserInteractionEnabled = false
-        self.ClassID_TextField.backgroundColor = UIColor.lightGray
+        //self.ClassID_TextField.isUserInteractionEnabled = false
+        //self.ClassID_TextField.backgroundColor = UIColor.lightGray
         
         self.SectionID_TextField.isUserInteractionEnabled = false
         self.SectionID_TextField.backgroundColor = UIColor.lightGray
@@ -155,14 +154,14 @@ class AddCourseViewController : UIViewController {
         createPickerViewForTextField(textField: self.College_TextField)
         createPickerViewForTextField(textField: self.SubjectArea_TextField)
         //createPickerViewForTextField(textField: self.CourseTitle_TextField)
-        createPickerViewForTextField(textField: self.ClassID_TextField)
+        //createPickerViewForTextField(textField: self.ClassID_TextField)
         createPickerViewForTextField(textField: self.SectionID_TextField)
         createPickerViewForTextField(textField: self.OnlineType_TextField)
         
         enableDismissPickerViewFromTextField(textField: self.College_TextField)
         enableDismissPickerViewFromTextField(textField: self.SubjectArea_TextField)
         //enableDismissPickerViewFromTextField(textField: self.CourseTitle_TextField)
-        enableDismissPickerViewFromTextField(textField: self.ClassID_TextField)
+        //enableDismissPickerViewFromTextField(textField: self.ClassID_TextField)
         enableDismissPickerViewFromTextField(textField: self.SectionID_TextField)
         enableDismissPickerViewFromTextField(textField: self.OnlineType_TextField)
     }
@@ -177,7 +176,7 @@ class AddCourseViewController : UIViewController {
         ClassTime_Label.text = ""
         Room_Label.text = ""
         Instructor_Label.text = ""
-        Notification_Switch.isOn = false
+        //Notification_Switch.isOn = false
         
         self.CourseError_Label.isHidden = true
         self.OnlineReminder_Label.isHidden = true
@@ -211,7 +210,7 @@ class AddCourseViewController : UIViewController {
         course.endDate = self.endDate
         course.endTime = self.endTime
         course.instructor = self.instructor
-        course.notification = self.Notification_Switch.isOn
+        //course.notification = self.Notification_Switch.isOn
         course.onlineType = self.selectedOnlineType
         course.room = self.room
         course.sectionID = self.selectedSection
@@ -267,9 +266,6 @@ extension AddCourseViewController : UIPickerViewDelegate, UIPickerViewDataSource
         else if currentTextField == CourseTitle_TextField {
             return 0
         }
-        else if currentTextField == ClassID_TextField {
-            return 0
-        }
         else if currentTextField == SectionID_TextField {
             return self.sectionList.count
         }
@@ -293,9 +289,6 @@ extension AddCourseViewController : UIPickerViewDelegate, UIPickerViewDataSource
         else if currentTextField == CourseTitle_TextField {
             return ""
         }
-        else if currentTextField == ClassID_TextField {
-            return ""
-        }
         else if currentTextField == SectionID_TextField {
             return self.sectionList[row]
         }
@@ -317,9 +310,6 @@ extension AddCourseViewController : UIPickerViewDelegate, UIPickerViewDataSource
             
         }
         else if currentTextField == CourseTitle_TextField {
-            
-        }
-        else if currentTextField == ClassID_TextField {
             
         }
         else if currentTextField == SectionID_TextField {
@@ -385,9 +375,6 @@ extension AddCourseViewController: UITextFieldDelegate {
             //initVariable()
             initTextField()
             initLabels()
-        }
-        else if self.currentTextField == ClassID_TextField {
-            
         }
         else if self.currentTextField == SectionID_TextField {
             

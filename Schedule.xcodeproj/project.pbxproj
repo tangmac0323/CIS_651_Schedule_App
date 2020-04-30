@@ -11,6 +11,7 @@
 		641A4327242496FB00BEFE35 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641A4326242496FB00BEFE35 /* CalendarViewController.swift */; };
 		641A4329242560ED00BEFE35 /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641A4328242560ED00BEFE35 /* CalendarCollectionViewCell.swift */; };
 		641A432B2425AD7400BEFE35 /* CalendarVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641A432A2425AD7400BEFE35 /* CalendarVars.swift */; };
+		6470CF94245AA09700285EBA /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6470CF93245AA09700285EBA /* NotificationManager.swift */; };
 		64757113242FB08A0064892C /* events.json in Resources */ = {isa = PBXBuildFile; fileRef = 64757112242FB08A0064892C /* events.json */; };
 		649EDDFA245793CF001D56A8 /* SchedulerGlobals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649EDDF9245793CF001D56A8 /* SchedulerGlobals.swift */; };
 		649EDDFF2457FA3C001D56A8 /* WeeklyEventViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649EDDFD2457FA3C001D56A8 /* WeeklyEventViewer.swift */; };
@@ -48,6 +49,7 @@
 		641A4326242496FB00BEFE35 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		641A4328242560ED00BEFE35 /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
 		641A432A2425AD7400BEFE35 /* CalendarVars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarVars.swift; sourceTree = "<group>"; };
+		6470CF93245AA09700285EBA /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		64757112242FB08A0064892C /* events.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = events.json; sourceTree = "<group>"; };
 		649EDDF9245793CF001D56A8 /* SchedulerGlobals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulerGlobals.swift; sourceTree = "<group>"; };
 		649EDDFD2457FA3C001D56A8 /* WeeklyEventViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyEventViewer.swift; sourceTree = "<group>"; };
@@ -147,6 +149,14 @@
 			path = Weekly;
 			sourceTree = "<group>";
 		};
+		6470CF92245AA06800285EBA /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				6470CF93245AA09700285EBA /* NotificationManager.swift */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
 		649EDDF82457939D001D56A8 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -186,6 +196,7 @@
 		CC36145924204FF500A311BC /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
+				6470CF92245AA06800285EBA /* Notification */,
 				649EDE8E24598E3B001D56A8 /* FirebaseDataBase */,
 				649EDDF82457939D001D56A8 /* Utilities */,
 				641A43252424015C00BEFE35 /* Weekly */,
@@ -372,6 +383,7 @@
 				CC6043EE24208A140024156B /* CourseTableViewCell.swift in Sources */,
 				641A432B2425AD7400BEFE35 /* CalendarVars.swift in Sources */,
 				649EDE872459416A001D56A8 /* Task+CoreDataProperties.swift in Sources */,
+				6470CF94245AA09700285EBA /* NotificationManager.swift in Sources */,
 				CC6043EC242089E20024156B /* CourseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

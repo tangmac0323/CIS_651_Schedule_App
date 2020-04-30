@@ -34,6 +34,7 @@ extension Course {
     @NSManaged public var selfID: String?
     @NSManaged public var onlineType: String?
     @NSManaged public var notificationID: String?
+    @NSManaged public var classCount: NSDecimalNumber?
     
     
 }

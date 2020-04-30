@@ -15,7 +15,6 @@ class EditTaskViewController : UIViewController {
     @IBOutlet weak var TaskTitle_TextField: UITextField!
     @IBOutlet weak var TaskDDL_TextField: UITextField!
     
-    @IBOutlet weak var Notification_Switch: UISwitch!
     @IBOutlet weak var Note_TextView: UITextView!
     
     @IBOutlet weak var Save_Button: UIButton!
@@ -57,7 +56,7 @@ class EditTaskViewController : UIViewController {
         let myFormatter = MyDateManager()
         self.TaskDDL_TextField.text = myFormatter.FormattedToSimplified(datestr: task.endTime!)
         self.TaskTitle_TextField.text = task.title
-        self.Notification_Switch.isOn = task.notification
+        //self.Notification_Switch.isOn = task.notification
         self.Note_TextView.text = task.content
         self.deadLineStr = self.TaskDDL_TextField.text
     }
@@ -68,7 +67,7 @@ class EditTaskViewController : UIViewController {
     func updateDataToObject(task : Task) {
         task.setValue(self.deadLineStr, forKey: TaskCoredataConstants.EndTime)
         task.setValue(self.TaskTitle_TextField.text, forKey: TaskCoredataConstants.Title)
-        task.setValue(self.Notification_Switch.isOn, forKey: TaskCoredataConstants.Notification)
+        //task.setValue(self.Notification_Switch.isOn, forKey: TaskCoredataConstants.Notification)
         task.setValue(self.Note_TextView.text, forKey: TaskCoredataConstants.Content)
         task.setValue(NSDecimalNumber(decimal: Decimal(TaskCoredataConstants.NotificationAheadTimeInSec)), forKey: TaskCoredataConstants.NotificationAheadTime)
     }

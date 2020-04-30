@@ -245,42 +245,29 @@ extension WeeklyViewController {
         
         var events = [Event]()
         
-        /*
-        let decoder = JSONDecoder()
-                
-        guard let path = Bundle.main.path(forResource: "events", ofType: "json"),
-            let data = try? Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe),
-            let result = try? decoder.decode(ItemData.self, from: data) else { return }
-        
-        for (idx, item) in result.data.enumerated() {
-            let startDate = self.formatter(date: item.start)
-            let endDate = self.formatter(date: item.end)
-            let startTime = self.timeFormatter(date: startDate)
-            let endTime = self.timeFormatter(date: endDate)
-            
-            var event = Event()
-            event.id = idx
-            event.start = startDate
-            event.end = endDate
-            event.color = EventColor(item.color)
-            event.isAllDay = item.allDay
-            event.isContainsFile = !item.files.isEmpty
-            event.textForMonth = item.title
-            
-            if item.allDay {
-                event.text = "\(item.title)"
-            } else {
-                event.text = "\(startTime) - \(endTime)\n\(item.title)"
-            }
-            events.append(event)
-        }
-        */
-        
-        
+        // generate regular task
         let taskList = coredataRef.getTaskList()
         for task in taskList {
-            events.append(convertTaskToEvent(task: task))
+            // generate weekly task
+            let weeklyTask = self.convertTaskToWeeklyTask(task: task)
+            events.append(convertTaskToEvent(task: weeklyTask))
         }
+        
+        // generate course task
+        let courseList = coredataRef.getCourseList()
+        for course in courseList {
+            
+            // generate course task for each course
+            let courseTaskList = convertCourseToTaskList(course: course)
+            
+            // generate event for each course task
+            for courseTask in courseTaskList {
+                events.append(convertTaskToEvent(task: courseTask))
+            }
+        }
+        
+        
+        
         completion(events)
     }
     
@@ -380,11 +367,11 @@ extension WeeklyViewController {
     // *********************************************************************************
     // initialize with core data persistence
     // *********************************************************************************
-    func convertTaskToEvent(task: Task) -> Event {
+    func convertTaskToEvent(task: WeeklyTask) -> Event {
         let formatter = MyDateManager()
         
         var event = Event()
-        event.id = task.selfID
+        event.id = task.selfID!
         
         
         event.end = formatter.FormattedStringToDate(dateStr: task.endTime!)
@@ -405,15 +392,16 @@ extension WeeklyViewController {
             event.start = formatter.FormattedStringToDate(dateStr: task.startTimeForCourse!)
             let startTime = timeFormatter(date: event.start)
             event.eventData = task.content!
-            event.text = "\(startTime) - \(endTime)\n\(event.textForMonth)\n\(task.content!)"
+            event.text = "\(startTime) - \(endTime)\n\(event.textForMonth)\n\(task.roomForCourse!)"
         }
+        
         return event
     }
     
     // *********************************************************************************
     // calculate the notification date
     // *********************************************************************************
-    func CalcNotificationDate(task : Task) -> Date {
+    func CalcNotificationDate(task : WeeklyTask) -> Date {
         let formatter = MyDateManager()
         let endDate = formatter.FormattedStringToDate(dateStr: task.endTime!)
         let notificationDate = endDate - Double(task.notificationAheadTime!)
@@ -421,10 +409,220 @@ extension WeeklyViewController {
     }
     
     // *********************************************************************************
-    // get the color
+    // covert the course object to weekly task object list
     // *********************************************************************************
+    func convertCourseToTaskList(course: Course) -> [WeeklyTask] {
+        
+        var taskList: [WeeklyTask] = []
+        
+        // check if attribute exist
+        if course.startDate == "" || course.endDate == "" {
+            return taskList
+        }
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd/yyyy"
+        let startDate = formatter.date(from: course.startDate!)
+        let endDate = formatter.date(from: course.endDate!)
+        
+        // generate the Date list by weekdays from the course
+        let dateList = self.getWeekdayList(startDate: startDate, endDate: endDate, weekdays: course.weekdays, startTime: course.startTime)
+        
+        // loop the date list and generate corresponding Task objects
+        for dateObj in dateList {
+            var task = WeeklyTask()
+            
+            // assign object ID
+            //task.selfID = task.objectID.uriRepresentation().absoluteString
+            task.selfID = course.objectID.uriRepresentation().absoluteString
+            
+            // assign end time
+            let taskEndDate = self.timeConverter(date: dateObj, time: course.endTime)
+            let myFormatter = MyDateManager()
+            let taskEndDateStr = myFormatter.DateToFormattedString(date: taskEndDate)
+            task.endTime = taskEndDateStr
+            
+            // assign start time
+            task.startTimeForCourse = myFormatter.DateToFormattedString(date: dateObj)
+            
+            // assign trival
+            task.title = course.course
+            task.category = EventConstants.EventCategory.Course
+            
+            // construct block str
+            task.roomForCourse = course.room
+            
+            // append to task list
+            taskList.append(task)
+            
+        }
+        
+        return taskList
+        
+    }
+    
+    // *********************************************************************************
+    // covert the task obejct to weekly task
+    // *********************************************************************************
+    func convertTaskToWeeklyTask(task: Task) -> WeeklyTask {
+        var weeklyTask = WeeklyTask()
+        
+        weeklyTask.category = task.category
+        //weeklyTask.content = task.content
+        weeklyTask.createTime = task.createTime
+        weeklyTask.endTime = task.endTime
+        weeklyTask.notification = task.notification
+        weeklyTask.notificationAheadTime = Int(truncating: task.notificationAheadTime!)
+        weeklyTask.notificationID = task.notificationID
+        weeklyTask.roomForCourse = task.roomForCourse
+        weeklyTask.selfID = task.selfID
+        weeklyTask.startTimeForCourse = task.startTimeForCourse
+        weeklyTask.status = task.status
+        weeklyTask.title = task.title
+        
+        return weeklyTask
+    }
     
     
+    // *********************************************************************************
+    // input is startTime/endTime e.g. 13:50
+    // output is a Date with formatted string: Date + "T" + time + "00:00"
+    // *********************************************************************************
+
+    func timeConverter(date: Date? ,time: String?) -> Date {
+        
+        if time == nil || date == nil {
+            return Date()
+        }
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'"
+        let dateStr = formatter.string(from: date!)
+        let timeStr = time!+":00+00:00"
+        let str = dateStr + timeStr
+        
+        //convert formatted string back to date
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        return dateFormatter.date(from: str)!
+    }
+    
+    // *********************************************************************************
+    // save all weekdays(class day) into a Date list
+    // time interval: startDate ~ endDate
+    // *********************************************************************************
+
+    func getWeekdayList(startDate: Date?, endDate: Date?, weekdays: String?, startTime: String?) -> [Date] {
+        
+        if startDate == nil || endDate == nil || weekdays == nil || startTime == nil ||  weekdays == "" || startTime == "" {
+            return []
+        }
+        
+        //convert weekday patterns into numbers
+        //targetWeekdays is the matched weekdays from startDate to endDate
+        var targetWeekdays: [Int] = []
+        switch weekdays! {
+        case "M":
+            targetWeekdays = [2]
+        case "T":
+            targetWeekdays = [3]
+        case "W":
+            targetWeekdays = [4]
+        case "TH":
+            targetWeekdays = [5]
+        case "F":
+            targetWeekdays = [6]
+        case "Sa":
+            targetWeekdays = [7]
+        case "Su":
+            targetWeekdays = [1]
+        case "MW":
+            targetWeekdays = [2, 4]
+        case "TTH":
+            targetWeekdays = [3, 5]
+            
+        default:
+            targetWeekdays = []
+        }
+        
+        var resultList: [Date] = []
+        let calendar = Calendar.current
+        let components = DateComponents(hour: 0, minute: 0, second: 0)
+        
+        let startDay = calendar.component(.weekday, from: startDate!)
+        
+        //if startDay is matched, add it into the result list
+        if targetWeekdays.contains(startDay) {
+            
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd'T'"
+            let dateStr = formatter.string(from: startDate!)
+            let timeStr = startTime!+":00+00:00"
+            let str = dateStr + timeStr
+            
+            //convert formatted string back to date
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+            resultList.append(dateFormatter.date(from: str)!)
+            
+        }
+        
+        //iterate the dates from startDate to endDate
+        calendar.enumerateDates(startingAfter: startDate!, matching: components, matchingPolicy: .nextTime) { (date, strict, stop) in
+            if let date = date {
+                if date <= endDate! {
+                    let weekday = calendar.component(.weekday, from: date)
+                    
+                    if targetWeekdays.contains(weekday) {
+                        
+                        let formatter = DateFormatter()
+                        formatter.dateFormat = "yyyy-MM-dd'T'"
+                        let dateStr = formatter.string(from: date)
+                        let timeStr = startTime!+":00+00:00"
+                        let str = dateStr + timeStr
+                        
+                        //convert formatted string back to date
+                        let dateFormatter = DateFormatter()
+                        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+                        resultList.append(dateFormatter.date(from: str)!)
+                    }
+                }
+                else {
+                    stop = true
+                }
+            }
+        }
+        
+        return resultList
+    }
 }
 
-
+struct WeeklyTask {
+    
+    init() {
+        selfID = ""
+        startTimeForCourse = ""
+        endTime = ""
+        title = ""
+        category = ""
+        content = ""
+        notificationAheadTime = 0
+        notificationID = ""
+        createTime = ""
+        roomForCourse = ""
+    }
+    
+    var selfID : String?
+    var startTimeForCourse: String?
+    var endTime: String?
+    var title: String?
+    var category: String?
+    var content: String?
+    var notification: Bool = false
+    var notificationAheadTime: Int?
+    var notificationID: String?
+    var createTime: String?
+    var status: Bool = false
+    var roomForCourse: String?
+    
+}
