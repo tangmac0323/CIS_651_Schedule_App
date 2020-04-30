@@ -373,6 +373,8 @@ extension UIColor {
 }
 
 
+// MARK: - Weekly View Model
+
 extension WeeklyViewController {
     
     // *********************************************************************************
@@ -405,26 +407,6 @@ extension WeeklyViewController {
             event.eventData = task.content!
             event.text = "\(startTime) - \(endTime)\n\(event.textForMonth)\n\(task.content!)"
         }
-        
-        
-        
-        /*
-        event.id = idx
-        event.start = startDate
-        event.end = endDate
-        event.color = EventColor(item.color)
-        event.isAllDay = item.allDay
-        event.isContainsFile = !item.files.isEmpty
-        event.textForMonth = item.title
-        
-        if item.allDay {
-            event.text = "\(item.title)"
-        } else {
-            event.text = "\(startTime) - \(endTime)\n\(item.title)"
-        }
-        events.append(event)
-        */
-        
         return event
     }
     
