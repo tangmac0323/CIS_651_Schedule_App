@@ -28,6 +28,7 @@ class TaskTableViewController : UITableViewController {
         super.viewWillAppear(true)
         //getTaskList()
         self.TaskList = coredataRef.getTaskListByCategory(category: EventConstants.EventCategory.Task)
+        self.tableView.separatorStyle = .none
         self.tableView.reloadData()
     }
     
@@ -68,7 +69,7 @@ class TaskTableViewController : UITableViewController {
     // *********************************************************************************
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return 60
+        return 100
         
     }
     

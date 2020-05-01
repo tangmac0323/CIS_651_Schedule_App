@@ -36,6 +36,7 @@ class AddCourseViewController : UIViewController {
     @IBOutlet weak var Instructor_Label: UILabel!
     @IBOutlet weak var OnlineReminder_Label: UILabel!
     
+    @IBOutlet weak var SectionIDReminder_Label: UILabel!
     @IBOutlet weak var Description_TextView: UITextView!
     
     
@@ -179,7 +180,33 @@ class AddCourseViewController : UIViewController {
         //Notification_Switch.isOn = false
         
         self.CourseError_Label.isHidden = true
+        self.SectionIDReminder_Label.isHidden = true
         self.OnlineReminder_Label.isHidden = true
+        
+    }
+    
+    // *********************************************************************************
+    // func to check if the input data is completed
+    // *********************************************************************************
+    func isCourseInfoCompleted() -> Bool {
+        if CourseTitle_TextField.text == "" || CourseTitle_TextField.text == nil {
+            self.CourseError_Label.text = "invalid course"
+            return false
+        }
+        
+        if SectionID_TextField.text == "" || SectionID_TextField.text == nil {
+            self.SectionIDReminder_Label.text = "pick a section"
+            return false
+        }
+        
+        if OnlineType_TextField.isUserInteractionEnabled == true {
+            if OnlineType_TextField.text == "" || OnlineType_TextField.text == nil {
+                self.OnlineReminder_Label.text = "pick a online-type"
+                return false
+            }
+        }
+        
+        return true
     }
     
 
@@ -206,7 +233,7 @@ class AddCourseViewController : UIViewController {
         course.subjectArea = self.subjectArea
         course.college = self.College_TextField.text
         course.content = self.Description_TextView.text
-        course.course = self.selectedCourse
+        course.course = self.selectedCourse?.lowercased()
         course.endDate = self.endDate
         course.endTime = self.endTime
         course.instructor = self.instructor
@@ -239,9 +266,17 @@ class AddCourseViewController : UIViewController {
     }
     
     @IBAction func SaveButton_Tapped(_ sender: Any) {
-        createCourse()
+        // check if the data is completed
         
-        _ = self.navigationController?.popViewController(animated: true)
+        if isCourseInfoCompleted() {
+            createCourse()
+            
+            _ = self.navigationController?.popViewController(animated: true)
+        }
+        else{
+            // do nothing
+        }
+        
     }
     
     
@@ -384,17 +419,25 @@ extension AddCourseViewController: UITextFieldDelegate {
             self.OnlineType_TextField.isUserInteractionEnabled = false
             self.OnlineType_TextField.backgroundColor = UIColor.lightGray
             
+            // hide the error label
+            self.SectionIDReminder_Label.isHidden = true
+            self.OnlineReminder_Label.isHidden = true
+            
             if sectionList.count != 0 {
                 self.SectionID_TextField.text = sectionList[0]
             }
         }
         else if self.currentTextField == OnlineType_TextField {
+            
+            // hide the error labe
+            self.OnlineReminder_Label.isHidden = true
+            
             if onlineTypeList.count != 0 {
                 self.OnlineType_TextField.text = onlineTypeList[0]
             }
         }
         else {
-            print("error")
+            print("Course/AddCourseViewController.swift - func textFieldDidBeginEditing() - error")
         }
         
     }
@@ -405,6 +448,16 @@ extension AddCourseViewController: UITextFieldDelegate {
             
             // set the the selected college
             self.selectedCourse = CourseTitle_TextField.text
+            
+            // check if the course is already in course list
+            if coredataRef.isCourseAlreadyInList(courseStr: self.selectedCourse!) {
+                self.CourseError_Label.text = "course already added"
+                return
+            }
+            
+            if self.currentTextField.text == nil || self.currentTextField.text == "" {
+                return
+            }
             
             // check if the course titlte is valid
             firebaseManager.retrieveCourseInfoByCourseTitle(courseTitle: self.currentTextField.text, CompletionHandler: { (document, sectionList, isValid) in

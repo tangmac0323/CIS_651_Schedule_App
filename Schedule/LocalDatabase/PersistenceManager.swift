@@ -100,6 +100,36 @@ final class PersistenceManager {
     }
     
     // *********************************************************************************
+    // check if course exist
+    // *********************************************************************************
+    func isCourseAlreadyInList(courseStr: String) -> Bool {
+        
+        // lowercase the course
+        let course = courseStr.lowercased()
+        //var CourseList : [Course] = []
+        //bool isExist = false
+        
+        // fetch from the data base
+        let fetchRequest = NSFetchRequest<Course>(entityName: CourseCoredataConstants.EntityTitle)
+        fetchRequest.predicate = NSPredicate(format: "course == %@", course)
+        
+        do {
+            let courses = try self.context.fetch(fetchRequest)
+            // check the request fetch count
+            if courses.count == 0 {
+                return false
+            }
+            else {
+                return true
+            }
+
+        }
+        catch let error as NSError {
+            return true
+        }
+    }
+    
+    // *********************************************************************************
     // extract course from coredata
     // *********************************************************************************
     

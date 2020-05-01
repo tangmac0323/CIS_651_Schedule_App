@@ -60,6 +60,8 @@ class CourseDetailViewController : UIViewController {
         
         Note_TextView.isEditable = false
         Note_TextView.text = ""
+        
+        
     }
     
     // *********************************************************************************

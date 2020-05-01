@@ -40,6 +40,7 @@ class CourseViewController: UIViewController, UITableViewDataSource, UITableView
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         loadCourseDataFromCoredata()
+        self.CourseTableView.separatorStyle = .none
         self.CourseTableView.reloadData()
     }
     
@@ -83,7 +84,7 @@ class CourseViewController: UIViewController, UITableViewDataSource, UITableView
             return 50
         }
          */
-        return 60
+        return 80
         
     }
     
@@ -100,7 +101,7 @@ class CourseViewController: UIViewController, UITableViewDataSource, UITableView
         cell.courseLabel.text = course.course
         cell.courseObj = course
         
-        print(course)
+        //print(course)
         
         cell.dateLabel.text = self.constructCellDateLabel(course: course)
         //cell.courseLabel.text = course[indexPath.row]
