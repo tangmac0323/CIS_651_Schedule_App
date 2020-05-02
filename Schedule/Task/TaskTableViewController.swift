@@ -20,9 +20,12 @@ class TaskTableViewController : UITableViewController {
     var selectedObjectID : String = ""  // variable to pass selected object id to detail view
     var selectedObject : Task?
     
+    var isTableEmpty = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -74,10 +77,30 @@ class TaskTableViewController : UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return getTaskCount()
+        
+        if getTaskCount() == 0 {
+            isTableEmpty = true
+            return 1
+        }
+        else{
+            isTableEmpty = false
+            return getTaskCount()
+        }
+
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        // display hint message
+        if isTableEmpty == true {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TaskTableViewCell") as! TaskTableViewCell
+            cell.TaskDLL_Label.text = "click the + button on top right to add new task"
+            cell.TaskTitle_Label.text = ""
+            cell.TaskStatus_Label.text = ""
+            return cell
+        }
+        
+        // normal cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "TaskTableViewCell") as! TaskTableViewCell
         let task = TaskList[indexPath.row] as! Task
         
@@ -87,6 +110,10 @@ class TaskTableViewController : UITableViewController {
         // check the task status
         if ddlDate <= Date() {
             task.setValue(true, forKey: "status")
+            coredataRef.saveContext()
+        }
+        else{
+            task.setValue(false, forKey: "status")
             coredataRef.saveContext()
         }
         
@@ -102,6 +129,10 @@ class TaskTableViewController : UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if isTableEmpty == true {
+            return
+        }
            
         self.tableView.deselectRow(at: indexPath, animated: true)
         let cell = tableView.cellForRow(at: indexPath) as! TaskTableViewCell

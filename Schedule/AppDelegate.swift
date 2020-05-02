@@ -23,6 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // configure firebase
         FirebaseApp.configure()
         
+        // set for notification
+        UNUserNotificationCenter.current().delegate = self as! UNUserNotificationCenterDelegate
+        
         // Override point for customization after application launch.
         UITabBar.appearance().barTintColor = .black
         UITabBar.appearance().tintColor = .blue
@@ -85,4 +88,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
-
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+        print(response.notification.request.content.userInfo)
+        
+        return completionHandler()
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .badge, .sound])
+    }
+}

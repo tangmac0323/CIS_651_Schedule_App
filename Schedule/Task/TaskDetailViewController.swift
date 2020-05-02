@@ -124,7 +124,7 @@ class TaskDetailViewController: UIViewController {
         
         let myFormatter = MyDateManager()
         let dueDate = myFormatter.FormattedStringToDate(dateStr: self.selectedObject!.endTime!)
-        let notifyDate = dueDate - Double (60 * 60 * 24)
+        let notifyDate = dueDate - Double (60)
         let notifyStr = "\(self.selectedObject!.title!)"
         let notifyType = "Task"
         let notifyID = selectedObject?.objectID.uriRepresentation().absoluteString

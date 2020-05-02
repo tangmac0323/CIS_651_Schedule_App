@@ -190,17 +190,20 @@ class AddCourseViewController : UIViewController {
     // *********************************************************************************
     func isCourseInfoCompleted() -> Bool {
         if CourseTitle_TextField.text == "" || CourseTitle_TextField.text == nil {
+            self.CourseError_Label.isHidden = false
             self.CourseError_Label.text = "invalid course"
             return false
         }
         
         if SectionID_TextField.text == "" || SectionID_TextField.text == nil {
+            self.SectionIDReminder_Label.isHidden = false
             self.SectionIDReminder_Label.text = "pick a section"
             return false
         }
         
         if OnlineType_TextField.isUserInteractionEnabled == true {
             if OnlineType_TextField.text == "" || OnlineType_TextField.text == nil {
+                self.OnlineReminder_Label.isHidden = false
                 self.OnlineReminder_Label.text = "pick a online-type"
                 return false
             }

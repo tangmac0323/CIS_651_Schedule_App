@@ -25,6 +25,8 @@ class CourseViewController: UIViewController, UITableViewDataSource, UITableView
     var courseObj: Course?
     var isCollapse = false
     
+    var isTableEmpty = false
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,10 +93,27 @@ class CourseViewController: UIViewController, UITableViewDataSource, UITableView
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.CourseList.count
+        
+        if self.CourseList.count == 0 {
+            isTableEmpty = true
+            return 1
+        }
+        else{
+            isTableEmpty = false
+            return self.CourseList.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        // display hint message
+        if isTableEmpty == true {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CourseTableViewCell") as! CourseTableViewCell
+            cell.courseLabel.text = "click the + button on top right to add new course"
+            cell.dateLabel.text = ""
+            return cell
+        }
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "CourseTableViewCell") as! CourseTableViewCell
         let course = CourseList[indexPath.row] as! Course
         
@@ -144,6 +163,11 @@ class CourseViewController: UIViewController, UITableViewDataSource, UITableView
         self.selectIndex = indexPath.row
         tableView.reloadRows(at: [indexPath], with: .automatic)
          */
+        
+        if isTableEmpty == true {
+            return 
+        }
+        
         self.CourseTableView.deselectRow(at: indexPath, animated: true)
         let cell = tableView.cellForRow(at: indexPath) as! CourseTableViewCell
         //self.selectedClassID = cell.courseTitle!
